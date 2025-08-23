@@ -79,4 +79,15 @@ func TestTop10(t *testing.T) {
 			require.Equal(t, expected, Top10(text))
 		}
 	})
+	t.Run("only unique numbers", func(t *testing.T) {
+		words := "1 2 3 4 5 6 7 8 9 10"
+		expected := []string{"1", "10", "2", "3", "4", "5", "6", "7", "8", "9"}
+		require.Equal(t, expected, Top10(words))
+	})
+
+	t.Run("case sensitivity", func(t *testing.T) {
+		words := "test Test Unit UnIt unit"
+		expected := []string{"Test", "UnIt", "Unit", "test", "unit"}
+		require.Equal(t, expected, Top10(words))
+	})
 }
